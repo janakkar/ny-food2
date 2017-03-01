@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EclipseCodeFormatter">
+    <option name="defaultSettings" value="true" />
+    <option name="formatter" value="ECLIPSE" />
+    <option name="id" value="1468956956077" />
+    <option name="name" value="default" />
+    <option name="pathToConfigFileJava" value="$PROJECT_DIR$/../../rne-014-9-major-2016/.idea/nca-eclipse-java-formatter-rules.xml" />
+    <option name="selectedJavaProfile" value="NCA-Formatter-Rules" />
+  </component>
+  <component name="JavaScriptSettings">
+    <option name="languageLevel" value="JSX" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_3" default="true" />
+  <component name="SvnConfiguration" myUseAcceleration="nothing">
+    <configuration useDefault="false">C:\Users\jkarches\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ProjectJDKs.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

@@ -1,0 +1,41 @@
+.ingredients {
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.bad {
+    border-top: 2px dashed deeppink;
+}
+
+.good {
+    border-top: 2px dashed seagreen;
+}
+
+.score {
+    align-self: center;
+}
+
+.grade-panel {
+    display: flex;
+    flex-direction: column;
+}
+
+.line {
+    height: 1px;
+    width: 10px;
+    flex-grow: 1;
+    background-color: deeppink;
+    align-self: center;
+    opacity: 0.1;
+}
+
+.related-products {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.calculator {
+    display: flex;
+    flex-direction: column;
+}
