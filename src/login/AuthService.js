@@ -1,17 +1,17 @@
-import {firebaseAuth} from '../Root';
+import {firebaseAuth} from '../App';
 // import { Subject } from "rxjs/Rx";
 
 export class AuthService {
 
-    signupUser(user) {
+    static signupUser(user) {
         return firebaseAuth.createUserWithEmailAndPassword(user.email, user.password)
     }
 
-    signinUser(user) {
+    static signinUser(user) {
         return firebaseAuth.signInWithEmailAndPassword(user.email, user.password);
     }
 
-    logout() {
+    static logout() {
         firebaseAuth.signOut();
     }
 

@@ -6,7 +6,6 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {email: '', password: '', successMsg: ''};
-        this.auth = new AuthService();
 
         this.onSubmit = this.onSubmit.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -15,7 +14,7 @@ class Login extends Component {
 
     onSubmit(event) {
         event.preventDefault();
-        this.auth.signinUser({email: this.state.email, password: this.state.password}).then(() => {
+        AuthService.signinUser({email: this.state.email, password: this.state.password}).then(() => {
             this.setState({successMsg: 'Login success'});
         }).catch(() => {
             this.setState({successMsg: 'Wrong credentials!'});
@@ -32,7 +31,7 @@ class Login extends Component {
 
     render() {
         return (
-            <form className="container" onSubmit={this.onSubmit}>
+            <form onSubmit={this.onSubmit}>
                 <h4>{this.state.successMsg}</h4>
                 <div className="row">
                     <label htmlFor="loginName">User</label>

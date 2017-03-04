@@ -1,8 +1,8 @@
 import React, {Component} from "react";
 import App from "./App";
-import Login from "./login/Login";
-import CalculatorComponent from "./calculator/CalculatorComponent";
-import {BrowserRouter, Match} from "react-router";
+import {Router, hashHistory, Route, IndexRoute} from "react-router";
+import CalculatorComponent from './calculator/CalculatorComponent';
+import Login from './login/Login';
 import * as firebase from "firebase";
 
 const firebaseConfig = {
@@ -20,13 +20,12 @@ export const firebaseAuth = firebaseApp.auth();
 export default class Root extends Component {
     render() {
         return (
-            <BrowserRouter>
-                <div>
-                    <Match pattern='/' component={App}/>
-                    <Match exactly pattern='/login' component={Login}/>
-                    <Match pattern='/home' component={CalculatorComponent}/>
-                </div>
-            </BrowserRouter>
+            <Router history={hashHistory}>
+                <Route path='/' component={App}>
+                    <Route path='login' component={Login}/>
+                    <Route path='home' component={CalculatorComponent}/>
+                </Route>
+            </Router>
         );
     }
 };
