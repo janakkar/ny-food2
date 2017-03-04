@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import App from "./App";
-import {Router, hashHistory, Route, IndexRoute} from "react-router";
+import {Router, hashHistory, Route} from "react-router";
 import CalculatorComponent from './calculator/CalculatorComponent';
 import Login from './login/Login';
 import * as firebase from "firebase";

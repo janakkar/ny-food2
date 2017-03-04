@@ -83,7 +83,7 @@ input[type="submit"] {
   min-height: 34px;
   color: #087A86;
   /*background-color: #B9DCE7;*/
-  background-color: #D1F1CC;
+  background-color: #D6F9DB;
   border: 2px dashed #087A86;
   border-radius: 3px;
 }
@@ -91,13 +91,11 @@ input[type="submit"] {
 input[type="button"] {
   min-height: 24px;
   color: #087A86;
-  background-color: #D1F1CC;
+  background-color: #C8EFCD;
   /*border: 1px solid #087A86;*/
   border: none;
   border-radius: 3px;
 }
-
-
 
 
 
