@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {AuthService} from "./AuthService";
+import { signinUser } from "./AuthService";
 
 class Login extends Component {
 
@@ -14,8 +14,15 @@ class Login extends Component {
 
     onSubmit(event) {
         event.preventDefault();
-        AuthService.signinUser({email: this.state.email, password: this.state.password}).then(() => {
+        signinUser({email: this.state.email, password: this.state.password}).then(() => {
             this.setState({successMsg: 'Login success'});
+            const { location } = this.props;
+
+            if (location.state && location.state.nextPathname) {
+                this.props.router.replace(location.state.nextPathname)
+            } else {
+                this.props.router.replace('/home')
+            }
         }).catch(() => {
             this.setState({successMsg: 'Wrong credentials!'});
         });
@@ -31,21 +38,21 @@ class Login extends Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmit}>
-                <h4>{this.state.successMsg}</h4>
-                <div className="row">
-                    <label htmlFor="loginName">User</label>
-                    <input type="text" id="loginName" value={this.state.email} onChange={this.handleEmailChange}/>
-                </div>
-                <div className="row">
-                    <label htmlFor="userPassword">Password</label>
-                    <input type="password" id="userPassword" value={this.state.password}
-                           onChange={this.handlePasswordChange}/>
-                </div>
-                <div className="row">
-                    <input type="submit" value="Login"/>
-                </div>
-            </form>
+          <form onSubmit={this.onSubmit}>
+              <h4>{this.state.successMsg}</h4>
+              <div className="row">
+                  <label htmlFor="loginName">User</label>
+                  <input type="text" id="loginName" value={this.state.email} onChange={this.handleEmailChange}/>
+              </div>
+              <div className="row">
+                  <label htmlFor="userPassword">Password</label>
+                  <input type="password" id="userPassword" value={this.state.password}
+                         onChange={this.handlePasswordChange}/>
+              </div>
+              <div className="row">
+                  <input type="submit" value="Login"/>
+              </div>
+          </form>
         );
     }
 }
