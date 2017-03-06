@@ -7,13 +7,15 @@ const createId = (name) => {
 
 export default class AmountInput extends Component {
     render() {
+        const { controlName, amount, measure, onAmountChange, hasError } = this.props;
+
         return (
             <div className="row ">
-                <label htmlFor={createId(this.props.controlName)}>{this.props.controlLabel}</label>
-                <div className="amount">
-                    <input type="number" step="0.1" id={createId(this.props.controlName)} value={this.props.amount}
-                           onChange={this.props.onAmountChange}/>
-                    <span className="measure">{this.props.measure}</span>
+                <label htmlFor={createId(controlName)}>{controlName}</label>
+                <div className={`amount ${hasError ? 'error' : ''}`}>
+                    <input type="number" step="0.1" id={createId(controlName)} value={amount}
+                           onChange={onAmountChange}/>
+                    <span className="measure">{measure}</span>
                 </div>
             </div>
         );
@@ -21,8 +23,9 @@ export default class AmountInput extends Component {
 }
 
 AmountInput.propTypes = {
-    controlLabel: React.PropTypes.string,
     controlName: React.PropTypes.string,
     measure: React.PropTypes.string,
-    amount: React.PropTypes.number
+    amount: React.PropTypes.number,
+    onAmountChange: React.PropTypes.func,
+    hasError: React.PropTypes.bool
 };

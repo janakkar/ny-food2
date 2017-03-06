@@ -7,3 +7,7 @@
 .amount {
     display: flex;
 }
+
+.error {
+    border: 1px dotted orangered;
+}

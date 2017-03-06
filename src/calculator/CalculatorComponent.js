@@ -12,29 +12,59 @@ class CalculatorComponent extends Component {
         this.onAmountChange = this.onAmountChange.bind(this);
         this.onProductTypeSelected = this.onProductTypeSelected.bind(this);
         this.onSave = this.onSave.bind(this);
-        this.state = {product: ProductService.createProductTemplate(), calculation: undefined};
+
+        const product = ProductService.createProductTemplate();
+        const badIngredients = {};
+        product.get('badIngredients').forEach(ingredient => {badIngredients[ingredient.get('type')] = false});
+        const goodIngredients = {};
+        product.get('goodIngredients').forEach(ingredient => {goodIngredients[ingredient.get('type')] = false});
+
+        this.state = {
+            product: product,
+            calculation: undefined,
+            errors: {
+                badIngredients: badIngredients,
+                goodIngredients: goodIngredients
+            }
+        };
         this.productTypes = ProductService.getProductTypes();
         this.grades = ['A', 'B', 'C', 'D', 'E'];
     }
 
-    onAmountChange(type, index, value) {
+    validate(value) {
+        return value < 0 || value > 1000;
+    }
+
+    onAmountChange(type, subtype, index, value) {
         if (value) {
-            let changedProduct = this.state.product.setIn([type, index, 'amount'], value);
-            this.setState({product: changedProduct});
+            const changedProduct = this.state.product.setIn([type, index, 'amount'], value);
+            let currentErrors = this.state.errors;
+            currentErrors[type][subtype] = this.validate(value);
+
+            this.setState({
+                product: changedProduct,
+                errors: currentErrors
+            });
         }
     }
 
-    createOnAmountChangeHandler(type, index) {
+    createOnAmountChangeHandler(type, subtype, index) {
         return (event) => {
-            this.onAmountChange(type, index, event.target.value);
+            this.onAmountChange(type, subtype, index, event.target.valueAsNumber);
         }
     }
 
     createIngredientsTab(ingredientsName) {
-        return this.state.product.get(ingredientsName).map((ingredient, index) =>
-            <AmountInput key={ingredient.get('type')} controlName={ingredient.get('type')} measure='g'
-                         amount={ingredient.get('amount')}
-                         onAmountChange={this.createOnAmountChangeHandler(ingredientsName, index)}/>)
+        return this.state.product.get(ingredientsName).map((ingredient, index) => {
+            const type = ingredient.get('type');
+            const amount = ingredient.get('amount');
+
+            return (
+                <AmountInput key={type} controlName={type} measure='g' amount={amount}
+                             hasError={this.state.errors[ingredientsName][type]}
+                             onAmountChange={this.createOnAmountChangeHandler(ingredientsName, type, index)}/>
+            )
+        })
     }
 
     onSave(event) {

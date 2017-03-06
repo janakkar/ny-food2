@@ -16,12 +16,12 @@ class Login extends Component {
         event.preventDefault();
         signinUser({email: this.state.email, password: this.state.password}).then(() => {
             this.setState({successMsg: 'Login success'});
-            const { location } = this.props;
+            const { location, router } = this.props;
 
             if (location.state && location.state.nextPathname) {
-                this.props.router.replace(location.state.nextPathname)
+                router.replace(location.state.nextPathname)
             } else {
-                this.props.router.replace('/home')
+                router.replace('/home')
             }
         }).catch(() => {
             this.setState({successMsg: 'Wrong credentials!'});
