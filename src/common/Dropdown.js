@@ -28,12 +28,14 @@ export class Dropdown extends Component {
     }
 
     render() {
+        const { listItems, idPropertyName, selectedItem } = this.props;
+
         let listOfItems;
         if (this.state.showList) {
-            listOfItems = this.props.listItems.map(item =>
+            listOfItems = listItems.map(item =>
                 <li key={item}>
                     <a onClick={(event) => this.onSelectionChange(event, item)}>
-                        <span>{getItemName(this.props.idPropertyName, item)}</span>
+                        <span>{getItemName(idPropertyName, item)}</span>
                     </a>
                 </li>);
         }
@@ -42,8 +44,8 @@ export class Dropdown extends Component {
             <div className="nyf-dropdown" onMouseLeave={this.hideList}>
                 <div className="nyf-dropdown-list">
                     <input readOnly="true" type="text"
-                           value={getItemName(this.props.idPropertyName, this.props.selectedItem)}
-                           onMouseOver={this.showList}/>
+                         value={getItemName(idPropertyName, selectedItem)}
+                         onMouseOver={this.showList}/>
                     <ul>
                         {listOfItems}
                     </ul>
